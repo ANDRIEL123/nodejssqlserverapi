@@ -1,0 +1,28 @@
+use covid;
+
+CREATE TABLE casescovid
+(
+	ID INTEGER not null primary key identity,
+	confirmados INTEGER,
+	obitos INTEGER,
+	suspeitos INTEGER,
+	descartados INTEGER,
+	recuperados INTEGER,
+	acompanhados INTEGER,
+	inicio DATETIME2 GENERATED ALWAYS AS ROW START NOT NULL,
+	fim DATETIME2 GENERATED ALWAYS AS ROW END NOT NULL,
+	PERIOD FOR SYSTEM_TIME(inicio, fim)
+)
+WITH (SYSTEM_VERSIONING = ON);
+
+INSERT INTO casescovid (confirmados, obitos, suspeitos, descartados, recuperados, acompanhados) VALUES (7011, 99, 801, 5011, 6231, 519)
+
+UPDATE casescovid
+SET confirmados = 7022
+WHERE id = 1
+
+SELECT * FROM casescovid
+FOR SYSTEM_TIME
+BETWEEN '2000-01-01 00:00:00.0000000' and '2022-01-01 00:00:00.0000000'
+
+

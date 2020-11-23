@@ -18,11 +18,8 @@ router.use((request, response, next) => {
 
 router.route('/cases').get((req, res) => {
     dboperations.getCases().then(result => {
-        res.json(result)
+        res.json(result[0])
     })
-
 })
-
-
 
 module.exports = app
